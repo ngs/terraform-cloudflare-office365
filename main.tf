@@ -1,25 +1,25 @@
 module "exchange" {
-  source = "./modules/exchange"
-  domain = "${var.domain}"
-  name   = "${var.name}"
-  mx     = "${var.mx}"
+  source  = "./modules/exchange"
+  zone_id = var.zone_id
+  name    = var.name
+  mx      = var.mx
 }
 
 module "mdm" {
-  source = "./modules/mdm"
-  domain = "${var.domain}"
-  name   = "${var.name}"
+  source  = "./modules/mdm"
+  zone_id = var.zone_id
+  name    = var.name
 }
 
 module "skype" {
-  source = "./modules/skype"
-  domain = "${var.domain}"
-  name   = "${var.name}"
+  source  = "./modules/skype"
+  zone_id = var.zone_id
+  name    = var.name
 }
 
 module "verification" {
-  source = "./modules/verification"
-  domain = "${var.domain}"
-  name   = "${var.name}"
-  verify = "${var.verify}"
+  source  = "./modules/verification"
+  zone_id = var.zone_id
+  name    = var.name
+  verify  = var.verify
 }

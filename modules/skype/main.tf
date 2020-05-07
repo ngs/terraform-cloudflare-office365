@@ -1,5 +1,5 @@
 resource "cloudflare_record" "sipdir-online" {
-  domain   = "${var.domain}"
+  zone_id  = var.zone_id
   name     = "sip${var.name == "@" ? "" : ".${var.name}"}"
   value    = "sipdir.online.lync.com"
   type     = "CNAME"
@@ -7,7 +7,7 @@ resource "cloudflare_record" "sipdir-online" {
 }
 
 resource "cloudflare_record" "webdir-online" {
-  domain   = "${var.domain}"
+  zone_id  = var.zone_id
   name     = "lyncdiscover${var.name == "@" ? "" : ".${var.name}"}"
   value    = "webdir.online.lync.com"
   type     = "CNAME"
@@ -15,14 +15,14 @@ resource "cloudflare_record" "webdir-online" {
 }
 
 resource "cloudflare_record" "sip-tls" {
-  domain   = "${var.domain}"
-  name     = "${var.name}"
+  zone_id  = var.zone_id
+  name     = var.name
   type     = "SRV"
 
   data = {
     service  = "_sip"
     proto    = "_tls"
-    name     = "${var.name}"
+    name     = var.name
     priority = 100
     weight   = 1
     port     = 443
@@ -31,14 +31,14 @@ resource "cloudflare_record" "sip-tls" {
 }
 
 resource "cloudflare_record" "sipfederationtls-tcp" {
-  domain   = "${var.domain}"
-  name     = "${var.name}"
+  zone_id  = var.zone_id
+  name     = var.name
   type     = "SRV"
 
   data = {
     service  = "_sipfederationtls"
     proto    = "_tcp"
-    name     = "${var.name}"
+    name     = var.name
     priority = 100
     weight   = 1
     port     = 5061
