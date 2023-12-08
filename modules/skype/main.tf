@@ -19,7 +19,7 @@ resource "cloudflare_record" "sip-tls" {
   name     = var.name
   type     = "SRV"
 
-  data = {
+  data {
     service  = "_sip"
     proto    = "_tls"
     name     = var.name
@@ -35,7 +35,7 @@ resource "cloudflare_record" "sipfederationtls-tcp" {
   name     = var.name
   type     = "SRV"
 
-  data = {
+  data {
     service  = "_sipfederationtls"
     proto    = "_tcp"
     name     = var.name
