@@ -1,5 +1,11 @@
+variable "account_id" {
+  type    = string
+  default = "example-account-id"
+}
+
 resource "cloudflare_zone" "example" {
-  zone = "example.com"
+  name    = "example.com"
+  account = { id = var.account_id }
 }
 
 module "test-ghpage" {
@@ -9,4 +15,3 @@ module "test-ghpage" {
 	verify   = "MS=ms123456"
 	mx       = "office-mycompany-tld.mail.protection.outlook.com"
 }
-
