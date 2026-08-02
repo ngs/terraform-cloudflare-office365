@@ -11,8 +11,8 @@ module "mdm" {
   name    = var.name
 }
 
-module "skype" {
-  source  = "./modules/skype"
+module "teams" {
+  source  = "./modules/teams"
   zone_id = var.zone_id
   name    = var.name
 }
