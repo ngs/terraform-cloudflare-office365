@@ -8,9 +8,13 @@
 # Priority is set both at the top level and inside data. Cloudflare returns an
 # SRV record's priority in both places, so setting only data.priority leaves a
 # permanent diff in every plan.
+#
+# The name must not end in a dot. Cloudflare rejects a create with "DNS name is
+# invalid" when it does, even though records created before that validation
+# landed still resolve.
 resource "cloudflare_dns_record" "sipfederationtls-tcp" {
   zone_id  = var.zone_id
-  name     = "_sipfederationtls._tcp.${var.name == "@" ? "" : "${var.name}."}"
+  name     = "_sipfederationtls._tcp${var.name == "@" ? "" : ".${var.name}"}"
   type     = "SRV"
   ttl      = 3600
   priority = 100
